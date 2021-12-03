@@ -1,0 +1,17 @@
+<svg width="348" height="348" xmlns="http://www.w3.org/2000/svg" fill="none">
+ <g>
+  <title>Layer 1</title>
+  <path d="m5.079,5.776l336.913,0l0,337.67l-336.912,0l-0.001,-337.67z" stroke-width="2" stroke="#000" id="svg_1"/>
+  <path d="m282.734,40.554c0,-8.376 6.966,-15.165 15.56,-15.165c4.126,0 8.084,1.597 11.001,4.441c2.918,2.844 4.558,6.702 4.558,10.724c0,8.376 -6.966,15.165 -15.56,15.165c-8.593,0 -15.559,-6.79 -15.559,-15.165z" stroke-width="2" stroke="#000" id="svg_2"/>
+  <ellipse fill="#fff" stroke="#000" cx="252" cy="169.8" id="svg_4" rx="32" ry="33"/>
+  <ellipse fill="#fff" stroke="#000" cx="98" cy="170.8" id="svg_6" rx="32" ry="33"/>
+  <ellipse fill="#fff" stroke="#000" cx="98" cy="269.8" id="svg_7" rx="32" ry="33"/>
+  <ellipse fill="#fff" stroke="#000" cx="254" cy="270.8" id="svg_8" rx="32" ry="33"/>
+  <text fill="#000000" stroke-width="0" x="86" y="181.8" id="svg_10" font-size="29" font-family="'Oswald'" text-anchor="start" xml:space="preserve" stroke="#000" transform="matrix(2.05164 0 0 1.89511 -92.4408 -148.057)">1</text>
+  <text fill="#000000" stroke-width="0" x="162.52415" y="178.63396" id="svg_11" font-size="29" font-family="'Oswald'" text-anchor="start" xml:space="preserve" stroke="#000" transform="matrix(2.05164 0 0 1.89511 -92.4408 -148.057)">1</text>
+  <text fill="#000000" stroke-width="0" x="87.46224" y="230.87367" id="svg_12" font-size="29" font-family="'Oswald'" text-anchor="start" xml:space="preserve" stroke="#000" transform="matrix(2.05164 0 0 1.89511 -92.4408 -148.057)">1</text>
+  <text fill="#000000" stroke-width="0" x="162.03673" y="233.51204" id="svg_13" font-size="29" font-family="'Oswald'" text-anchor="start" xml:space="preserve" stroke="#000" transform="matrix(2.05164 0 0 1.89511 -92.4408 -148.057)">1</text>
+  <ellipse ry="9" rx="8.5" id="svg_3" cy="84.2" cx="164.5" stroke="#000" fill="#fff"/>
+ </g>
+
+</svg>
