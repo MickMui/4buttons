@@ -286,27 +286,12 @@ public class buttonsScript : MonoBehaviour {
         }
         Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress,transform);
 
-        for (int i = 0; i < listtopress.Count; i++)
+        //log listtopress
+        for (int i =0;i < listtopress.Count; i++)
         {
-            Debug.Log(i.ToString() + listtopress[i].ToString());
+            Debug.Log(i+1);
+            Debug.Log(listtopress[i]);
         }
-        if (colorstatic == colors) {
-            Debug.Log("Something's wrong");
-        }
-        /*/for(int i=0;i < Bomb.GetSolvableModuleNames().Count; i++)
-        {
-            Debug.Log(Bomb.GetSolvableModuleNames()[i]);
-            Debug.Log(Bomb.GetModuleNames()[i]);
-        }/*/
-        if (Bomb.GetModuleNames().All(x => Bomb.GetSolvableModuleNames().Contains(x)))
-        {
-            Debug.Log("No needy");
-        }
-        //getting text from a button
-        //(button).GetComponentInChildren<TextMesh>().text
-
-
-
 
 
         //passes or strikes
@@ -324,7 +309,7 @@ public class buttonsScript : MonoBehaviour {
                 GetComponent<KMBombModule>().HandleStrike();
                 incorrect = false;
             }
-            if (stage == countcopy)
+            if (stage >= countcopy || stage > 7)
             {
                 stage12 = 2;
                 led.enabled = true;

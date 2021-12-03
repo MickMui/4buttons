@@ -9,3 +9,9 @@ v1.0
 
 v1.01
 -Increased light intensity for more clarity.
+
+v1.02
+-Fixed formatting problems in the manual
+
+v1.03
+-Bug fixes
