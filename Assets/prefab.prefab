@@ -1375,7 +1375,6 @@ MonoBehaviour:
   listtopress: []
   number: 00000000000000000000000000000000
   count: 0
-  countcopy: 0
   stage: 0
   stage12: 1
   ontimer: 0

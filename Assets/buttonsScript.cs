@@ -27,7 +27,6 @@ public class buttonsScript : MonoBehaviour {
     public int[] number = new int[4];
     static public int[] prime = { 2, 3, 5, 7 };
     public int count = 0;
-    public int countcopy = 0;
     public int stage = 0;
     public int stage12 = 1;
     public int ontimer;
@@ -71,7 +70,6 @@ public class buttonsScript : MonoBehaviour {
     void GenerateList()
     {
         count = UnityEngine.Random.Range(4, 8);
-        countcopy = count;
         //Press the top left button once.
         if (count >= 1)
         {
@@ -155,24 +153,22 @@ public class buttonsScript : MonoBehaviour {
                 count = count - 1;
                 listtopress.Add(buttons[Array.IndexOf(number,min)]);
             }
-            Debug.Log(countmin);
         }
-        //If there are less than 2 RCA and with needy
-        if (Bomb.IsDuplicatePortPresent(Port.StereoRCA) == false && Bomb.GetModuleNames().All(x => Bomb.GetSolvableModuleNames().Contains(x)))
+        //If count is not reached yet
+        int evenorodd = count % 2;
+        while (count >= 1)
+
         {
-            int evenorodd = count % 2;
-            while (count >= 1)
+            count = count - 1;
+            if (count % 2 != evenorodd)
             {
-                count = count - 1;
-                if (count % 2 != evenorodd)
-                {
-                    listtopress.Add(buttons[1]);
-                }
-                else
+                listtopress.Add(buttons[1]);
+            }
+             else
                 {
                     listtopress.Add(buttons[3]);
                 }
-            }
+
         }
         if (Array.IndexOf(colors, colorstatic[1]) == 2)
         {
@@ -233,6 +229,12 @@ public class buttonsScript : MonoBehaviour {
             finalbutton = buttons[Array.IndexOf(colors, colorstatic[1])];
             ontimer = 50;
         }
+        //log listtopress
+        for (int i = 0; i < listtopress.Count; i++)
+        {
+            Debug.LogFormat("[4 Buttons {0}] The order to press {1}", moduleId, i+1);
+            Debug.LogFormat("[4 Buttons {0}] The button to press {1}", moduleId, listtopress[i]);
+        }
     }
 
     void RandomNumberText()
@@ -286,13 +288,6 @@ public class buttonsScript : MonoBehaviour {
         }
         Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress,transform);
 
-        //log listtopress
-        for (int i =0;i < listtopress.Count; i++)
-        {
-            Debug.Log(i+1);
-            Debug.Log(listtopress[i]);
-        }
-
 
         //passes or strikes
         if (stage12 == 1) { 
@@ -309,7 +304,7 @@ public class buttonsScript : MonoBehaviour {
                 GetComponent<KMBombModule>().HandleStrike();
                 incorrect = false;
             }
-            if (stage >= countcopy || stage > 7)
+            if (stage >= listtopress.Count || stage > 7)
             {
                 stage12 = 2;
                 led.enabled = true;

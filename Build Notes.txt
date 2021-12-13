@@ -4,6 +4,7 @@ module id: 4buttons
 
 Created by: MickMui
 ______________________
+12/3/2021
 v1.0
 -Initial Release
 
@@ -15,3 +16,11 @@ v1.02
 
 v1.03
 -Bug fixes
+
+12/5/2021
+v1.04
+-Fixed a major bug causing the module to be unsolvable with a needy module.
+
+12/13/2021
+v1.05
+-Fixed logging problems
