@@ -1,8 +1,10 @@
-﻿using KModkit;
-using System;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using KModkit;
+using System.Text.RegularExpressions;
 
 public class buttonsScript : MonoBehaviour {
 
@@ -17,11 +19,6 @@ public class buttonsScript : MonoBehaviour {
     public TextMesh[] buttontext;
     public Light led;
     public KMSelectable finalbutton;
-
-
-
-
-
     public List<KMSelectable> listtopress = new List<KMSelectable>();
 
     public int[] number = new int[4];
@@ -232,8 +229,8 @@ public class buttonsScript : MonoBehaviour {
         //log listtopress
         for (int i = 0; i < listtopress.Count; i++)
         {
-            Debug.LogFormat("[4 Buttons {0}] The order to press {1}", moduleId, i+1);
-            Debug.LogFormat("[4 Buttons {0}] The button to press {1}", moduleId, listtopress[i]);
+            Debug.LogFormat("[4 Buttons #{0}] The order to press {1}", moduleId, i+1);
+            Debug.LogFormat("[4 Buttons #{0}] The button to press {1}", moduleId, listtopress[i]);
         }
     }
 
@@ -344,11 +341,110 @@ public class buttonsScript : MonoBehaviour {
                 }
          }
     }
-}
-
-    /*/
-	// Update is called once per frame
-	void Update () {
+	
+	//twitch plays
+    #pragma warning disable 414
+    private readonly string TwitchHelpMessage = @"To press the buttons on the module (in reading order), use !{0} press [1-4] (The numbers can be chained. Example: !{0} press 1423141321) | To hold and release a button on the module, use !{0} hold [1-4] until [0-9] or !{0} hold [1-4] then release";
+    #pragma warning restore 414
+    
+	int[] ButtonSort = {2, 3, 0, 1};
+    IEnumerator ProcessTwitchCommand(string command)
+    {
+		string[] parameters = command.Split(' ');
+		if (Regex.IsMatch(parameters[0], @"^\s*press\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+		{
+			yield return null;
+			if (parameters.Length != 2)
+			{
+				yield return "sendtochaterror Parameter length invalid. Command ignored.";
+				yield break;
+			}
+			
+			if (parameters[1].Length == 0)
+			{
+				yield return "sendtochaterror Number length invalid. Command ignored.";
+				yield break;
+			}
+			
+			for (int x = 0; x < parameters[1].Length; x++)
+			{
+				int Out;
+				if (!int.TryParse(parameters[1][x].ToString(), out Out))
+				{
+					yield return "sendtochaterror A number given is not valid. Command ignored.";
+					yield break;
+				}
+				
+				if (Out < 1 || Out > 4)
+				{
+					yield return "sendtochaterror A number given is not 1-4. Command ignored.";
+					yield break;
+				}
+				buttons[ButtonSort[Out-1]].OnInteract();
+				yield return new WaitForSecondsRealtime(0.1f);
+				buttons[ButtonSort[Out-1]].OnInteractEnded();
+				yield return new WaitForSecondsRealtime(0.1f);
+			}
+		}
 		
-	}/*/
+		if (Regex.IsMatch(parameters[0], @"^\s*hold\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+		{
+			yield return null;
+			int Out;
+			if (parameters.Length != 4)
+			{
+				yield return "sendtochaterror Parameter length invalid. Command ignored.";
+				yield break;
+			}
+			
+			if (parameters[1].Length == 0)
+			{
+				yield return "sendtochaterror Number length invalid. Command ignored.";
+				yield break;
+			}
+			
+			if (!int.TryParse(parameters[1].ToString(), out Out))
+			{
+				yield return "sendtochaterror A number given is not valid. Command ignored.";
+				yield break;
+			}
+			
+			if (Out < 1 || Out > 4)
+			{
+				yield return "sendtochaterror The button number given is not 1-4. Command ignored.";
+				yield break;
+			}
+			
+			if (Regex.IsMatch(parameters[2], @"^\s*until\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+			{
+				int Out2;
+				if (!int.TryParse(parameters[3].ToString(), out Out2))
+				{
+					yield return "sendtochaterror The timer number given is not valid. Command ignored.";
+					yield break;
+				}
+				
+				if (Out2 < 0 || Out2 > 9)
+				{
+					yield return "sendtochaterror The number given is not 0-9. Command ignored.";
+					yield break;
+				}
+				
+				buttons[ButtonSort[Out-1]].OnInteract();
+				while (((int)Bomb.GetTime()) % 10 != Out2)
+				{
+					yield return new WaitForSecondsRealtime(0.1f);
+				}
+				buttons[ButtonSort[Out-1]].OnInteractEnded();
+			}
+			
+			if (Regex.IsMatch(parameters[2], @"^\s*then\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) && Regex.IsMatch(parameters[3], @"^\s*release\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+			{	
+				buttons[ButtonSort[Out-1]].OnInteract();
+				yield return new WaitForSecondsRealtime(0.5f);
+				buttons[ButtonSort[Out-1]].OnInteractEnded();
+			}
+		}
+	}
+}
 
