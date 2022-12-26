@@ -24,3 +24,7 @@ v1.04
 12/13/2021
 v1.05
 -Fixed logging problems
+
+12/26/2022
+v1.06
+-Fixed lighting problems that happens with smaller casings

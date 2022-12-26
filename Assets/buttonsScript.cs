@@ -53,7 +53,8 @@ public class buttonsScript : MonoBehaviour {
         RandomButtonColor();
         RandomNumberText();
         GenerateList();
-
+        float scalar = transform.lossyScale.x;
+        led.range *= scalar;
     }
     void ColorstaticCopy()
     {
