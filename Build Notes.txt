@@ -1,0 +1,30 @@
+4 Buttons v1.0
+
+module id: 4buttons
+
+Created by: MickMui
+______________________
+12/3/2021
+v1.0
+-Initial Release
+
+v1.01
+-Increased light intensity for more clarity.
+
+v1.02
+-Fixed formatting problems in the manual
+
+v1.03
+-Bug fixes
+
+12/5/2021
+v1.04
+-Fixed a major bug causing the module to be unsolvable with a needy module.
+
+12/13/2021
+v1.05
+-Fixed logging problems
+
+12/26/2022
+v1.06
+-Fixed lighting problems that happens with smaller casings
