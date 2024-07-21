@@ -28,3 +28,7 @@ v1.05
 12/26/2022
 v1.06
 -Fixed lighting problems that happens with smaller casings
+
+7/21/2024
+v1.07
+-Bug fixes involving TP. (Contributions from Defuser Best & Exish via Discord)
